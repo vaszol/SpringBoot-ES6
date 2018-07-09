@@ -10,3 +10,14 @@ npm run build
 npm run watch
 завершение выполнения:
 ctrl+c -> y
+
+npm install --save-dev babel-polyfill
+
+установка сервера:
+npm install http-server -g
+запуск сервера:
+http-server
+остановка сервера:
+ctrl+c -> y
+адрес локального сервера:
+localhost:8080

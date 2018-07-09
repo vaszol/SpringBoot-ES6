@@ -1,67 +1,35 @@
-// callback:
-// function applyForVisa(documents, resolve, reject) {
-//     console.log('Обработка заявления...');
-//     setTimeout(function () {
-//         Math.random() > .5 ? resolve({}) : reject('В визе отказано: нехватка документов');
-//         // let visa = {};
-//         // resolve(visa);
-//     }, 2000)
-// }
-//
-// function bookhotel() {
-//
-// }
-//
-// function buyTickets() {
-//
-// }
-//
-// applyForVisa({}, function (visa) {
-//         console.info('Виза получена');
-//         bookhotel(visa, function (reservation) {
-//             buyTickets(reservation, function () {
-//
-//             }, function () {
-//
-//             })
-//         }, function (error) {
-//         })
-//     },
-//     function (reson) {
-//         console.error(reson);
-//     });
+'use strict';
 
+let movieList = document.getElementById('movies');
 
-function applyForVisa(documents) {
-    console.log('Обработка заявления...');
-    let promise = new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            Math.random() > .5 ? resolve({}) : reject('В визе отказано: нехватка документов');
-        }, 2000)
-    });
-    return promise;
+function addMovieToList(movie) {
+    let img = document.createElement('img');
+    img.src = movie.Poster;
+    movieList.appendChild(img);
 }
 
-function getVisa(visa) {
-    console.info('Виза получена', visa);
-    // return visa;
-    return new Promise(function (resolve, reject) {
-        setTimeout(() => resolve(visa), 2000);
+function getData(url, done) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            let json = JSON.parse(xhr.response);
+            console.log(json);
+            done(json.search);
+        } else {
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function (error) {
+        console.error(error);
+    }
+    xhr.send();
+}
+
+let search = 'spider man';
+
+getData(`http://www.omdbapi.com/?s=${search}`, function (movies) {
+    movies.forEach(function (movie) {
+        addMovieToList(movie);
     })
-}
-
-function bookhotel(visa) {
-    console.log('бронируем отель');
-    return Promise.resolve(visa);
-}
-
-function buyTickets(bocking) {
-    console.log('покупаем билет', bocking);
-}
-
-applyForVisa({})
-    .then(getVisa)
-    .then(bookhotel)
-    .then(buyTickets)
-    .catch(error => console.error(error));
-
+})
