@@ -1,3 +1,8 @@
+webpack уроки:
+https://learn.javascript.ru/screencast/webpack
+webpack уроки в виде плейлиста:
+https://www.youtube.com/watch?v=DJSZKf9GkUs&index=2&list=PLDyvV36pndZHfBThhg4Z0822EEG9VGenn
+
 установка webpack(@4.15.1):
 > npm i -g webpack
 > npm i webpack-cli
