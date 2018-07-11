@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+    mode: 'development',
     entry: "./home",
     output: {
         filename: "build.js",
@@ -10,5 +11,6 @@ module.exports = {
 
     watchOptions: {
         aggregateTimeout: 100
-    }
+    },
+    devtool: 'source-map'
 }
