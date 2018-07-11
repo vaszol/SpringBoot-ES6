@@ -23,3 +23,6 @@ webpack.github.io
 
 запуск сервера
 > static &
+
+смотрим:
+http://127.0.0.1:8080/home.html
