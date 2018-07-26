@@ -26,3 +26,6 @@ webpack.github.io
 
 смотрим:
 http://127.0.0.1:8080/home.html
+
+задаем переменную окружения и запускаем сборку:
+> set NODE_ENV = development && webpack
